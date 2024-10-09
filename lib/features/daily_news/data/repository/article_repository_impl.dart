@@ -18,7 +18,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
     try {
       final httpResponse = await _newsApiService.getNewsArticles(
     apiKey: newsApiKey,
-    category:categoryQuery ,
+    category:categoryQuery,
     country: countryQuery,
    );
    if (httpResponse.response.statusCode == HttpStatus.ok){
@@ -32,6 +32,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       requestOptions: httpResponse.response.requestOptions));
    } 
     } on DioException catch (e) {
+      print(e.toString());
       return DataFailed(e);
     }
    
