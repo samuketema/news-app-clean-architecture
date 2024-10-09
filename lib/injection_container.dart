@@ -6,21 +6,21 @@ import 'package:news/features/daily_news/domain/repository/article_repository.da
 import 'package:news/features/daily_news/domain/usecase/get_article.dart';
 import 'package:news/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 
-final s1 = GetIt.instance;
+ final sl = GetIt.instance;
 
 Future<void> initializeDependencies()async{
-  s1.registerSingleton<Dio>(Dio());
+  sl.registerSingleton<Dio>(Dio());
 
-  s1.registerSingleton<NewsApiService>(NewsApiService(s1()));
+  sl.registerSingleton<NewsApiService>(NewsApiService(sl()));
 
-  s1.registerSingleton<ArticleRepository>(
-    ArticleRepositoryImpl(s1())
+  sl.registerSingleton<ArticleRepository>(
+    ArticleRepositoryImpl(sl())
   );
-  s1.registerSingleton<GetArticleUsecase>(
-    GetArticleUsecase(s1())
+  sl.registerSingleton<GetArticleUsecase>(
+    GetArticleUsecase(sl())
   );
 
-s1.registerFactory<RemoteArticleBloc>(
-   ()=> RemoteArticleBloc(s1())
+sl.registerFactory<RemoteArticleBloc>(
+   ()=> RemoteArticleBloc(sl())
 );
 }
