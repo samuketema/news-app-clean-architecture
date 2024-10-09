@@ -13,14 +13,17 @@ class RemoteArticleBloc extends Bloc<RemoteArticleEvent, RemoteArticleState> {
 
   Future<void> onGetArticles(
       GetArticles event, Emitter<RemoteArticleState> emit) async {
-    final datastate = await _getArticleUsecase();
+    print('=================');
 
+    final datastate = await _getArticleUsecase();
+    print('=================');
     if (datastate is Datasuccess && datastate.data!.isNotEmpty) {
       emit(
         RemoteArticlesDone(datastate.data!),
       );
     }
     if (datastate is DataFailed) {
+      print(datastate.error!.message);
       emit(
         RemoteArticlesError(datastate.error!),
       );
